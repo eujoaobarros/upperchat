@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upper Chat - Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="dashboard.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+    <!-- Navbar Superior -->
+    <nav class="top-navbar">
+        <div class="navbar-content">
+            <!-- Logo no canto esquerdo -->
+            <div class="logo-container">
+                <div class="navbar-logo">
+                    <img src="upper chat logotipo transparente verde.png" alt="Upper Chat Logo" class="logo-img">
+                </div>
+            </div>
+            
+            <!-- Menus centralizados -->
+            <nav class="navbar-menu">
+                <a href="chat.html" class="menu-item">Chat</a>
+                <a href="dashboard.html" class="menu-item active">Dashboard</a>
+                <a href="crm.html" class="menu-item">CRM</a>
+            </nav>
+            
+            <!-- Ícones no canto direito -->
+            <div class="navbar-icons">
+                
+
+                
+
+                <div class="user-avatar small">
+                    <img src="Clínica bn - logo com fundo.png" alt="Usuário">
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="dashboard-container">
+        <!-- Cabeçalho do Dashboard -->
+        <div class="dashboard-header">
+            <h1>Dashboard de Performance</h1>
+            <div class="date-filter">
+                <select id="timeRange">
+                    <option value="7">Últimos 7 dias</option>
+                    <option value="30" selected>Últimos 30 dias</option>
+                    <option value="90">Últimos 90 dias</option>
+                    <option value="365">Últimos 12 meses</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Cards de Métricas -->
+        <div class="metrics-grid">
+            <!-- Card 1: Novos Leads -->
+            <div class="metric-card">
+                <div class="metric-header">
+                    <h3>Novos Leads</h3>
+                    <i class="fas fa-user-plus"></i>
+                </div>
+                <div class="metric-value" id="newLeads">124</div>
+                <div class="metric-change positive">
+                    <i class="fas fa-arrow-up"></i> 12% vs período anterior
+                </div>
+            </div>
+
+            <!-- Card 2: Leads Agendados -->
+            <div class="metric-card">
+                <div class="metric-header">
+                    <h3>Leads Agendados</h3>
+                    <i class="fas fa-calendar-check"></i>
+                </div>
+                <div class="metric-value" id="scheduledLeads">78</div>
+                <div class="metric-change positive">
+                    <i class="fas fa-arrow-up"></i> 8% vs período anterior
+                </div>
+            </div>
+
+            <!-- Card 3: Tempo Médio de Atendimento -->
+            <div class="metric-card">
+                <div class="metric-header">
+                    <h3>Tempo Médio de Atendimento</h3>
+                    <i class="fas fa-clock"></i>
+                </div>
+                <div class="metric-value" id="avgResponseTime">2m 45s</div>
+                <div class="metric-change negative">
+                    <i class="fas fa-arrow-down"></i> 15% vs período anterior
+                </div>
+            </div>
+
+            <!-- Card 4: Taxa de Conversão -->
+            <div class="metric-card">
+                <div class="metric-header">
+                    <h3>Taxa de Conversão</h3>
+                    <i class="fas fa-percentage"></i>
+                </div>
+                <div class="metric-value" id="conversionRate">24%</div>
+                <div class="metric-change positive">
+                    <i class="fas fa-arrow-up"></i> 3% vs período anterior
+                </div>
+            </div>
+        </div>
+
+        <!-- Gráficos e Visualizações -->
+        <div class="charts-grid">
+            <!-- Gráfico de Linha: Novos Leads ao Longo do Tempo -->
+            <div class="chart-card">
+                <div class="chart-header">
+                    <h3>Novos Leads por Dia</h3>
+                    <div class="chart-actions">
+                        <button class="chart-action-btn active" data-chart="leads">Leads</button>
+                        <button class="chart-action-btn" data-chart="conversions">Conversões</button>
+                    </div>
+                </div>
+                <div class="chart-container">
+                    <canvas id="leadsOverTimeChart"></canvas>
+                </div>
+            </div>
+
+            <!-- Gráfico de Barras: Canais de Aquisição -->
+            <div class="chart-card">
+                <div class="chart-header">
+                    <h3>Canais de Aquisição</h3>
+                </div>
+                <div class="chart-container">
+                    <canvas id="acquisitionChannelsChart"></canvas>
+                </div>
+            </div>
+
+            <!-- Mapa de Calor: Horários de Atendimento -->
+            <div class="chart-card">
+                <div class="chart-header">
+                    <h3>Atividade por Horário</h3>
+                </div>
+                <div class="heatmap-container" id="activityHeatmap">
+                    <!-- Heatmap será gerado via JS -->
+                </div>
+            </div>
+
+            <!-- Lista de Atividades Recentes -->
+            <div class="activity-card">
+                <div class="chart-header">
+                    <h3>Atividades Recentes</h3>
+                    <button class="icon-btn"><i class="fas fa-sync-alt"></i></button>
+                </div>
+                <div class="activity-list" id="recentActivities">
+                    <!-- Atividades serão adicionadas via JS -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Tabela de Leads Recentes -->
+        <div class="table-card">
+            <div class="table-header">
+                <h3>Leads Recentes</h3>
+                <button class="btn-secondary">
+                    <i class="fas fa-download"></i> Exportar
+                </button>
+            </div>
+            <div class="table-container">
+                <table id="recentLeadsTable">
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>Contato</th>
+                            <th>Origem</th>
+                            <th>Status</th>
+                            <th>Última Interação</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Dados serão preenchidos via JS -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script src="dashboard.js"></script>
+</body>
+</html>

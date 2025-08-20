@@ -1,0 +1,342 @@
+/* Estilos específicos para o CRM Kanban */
+
+.crm-container {
+    padding: 20px;
+    height: calc(100vh - 60px); /* Altura total menos a navbar */
+    display: flex;
+    flex-direction: column;
+    background-color: var(--background-light);
+}
+
+.crm-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid var(--gray-dark);
+}
+
+.crm-header h1 {
+    color: var(--text-primary);
+    font-size: 24px;
+}
+
+.crm-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.btn-primary, .btn-secondary {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    border-radius: var(--radius-sm);
+    border: none;
+    font-weight: 500;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: var(--primary-dark);
+}
+
+.btn-secondary {
+    background-color: var(--gray-medium);
+    color: var(--text-primary);
+}
+
+.btn-secondary:hover {
+    background-color: var(--gray-dark);
+}
+
+/* Kanban Container */
+.kanban-container {
+    display: flex;
+    gap: 20px;
+    overflow-x: auto;
+    padding-bottom: 20px;
+    flex: 1;
+}
+
+.kanban-board {
+    background-color: var(--white);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
+    width: 300px;
+    min-width: 300px;
+    display: flex;
+    flex-direction: column;
+    max-height: 100%;
+}
+
+.kanban-header {
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--gray-dark);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--primary-light);
+    border-radius: var(--radius-md) var(--radius-md) 0 0;
+}
+
+.kanban-header h3 {
+    margin: 0;
+    font-size: 16px;
+    color: var(--primary-dark);
+    flex: 1;
+    outline: none;
+}
+
+.kanban-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.kanban-cards {
+    padding: 10px;
+    overflow-y: auto;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.kanban-card {
+    background-color: var(--white);
+    border-radius: var(--radius-sm);
+    padding: 12px;
+    box-shadow: var(--shadow-sm);
+    cursor: grab;
+    transition: var(--transition);
+    border-left: 3px solid var(--primary-color);
+}
+
+.kanban-card:active {
+    cursor: grabbing;
+}
+
+.kanban-card:hover {
+    box-shadow: var(--shadow-md);
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 8px;
+}
+
+.card-title {
+    font-weight: 600;
+    margin: 0;
+    font-size: 14px;
+}
+
+.card-delete {
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    cursor: pointer;
+    padding: 2px;
+}
+
+.card-delete:hover {
+    color: #d32f2f;
+}
+
+.card-content {
+    font-size: 13px;
+    color: var(--text-secondary);
+}
+
+.card-content p {
+    margin: 4px 0;
+}
+
+.card-phone, .card-email {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.card-phone i, .card-email i {
+    color: var(--primary-dark);
+}
+
+/* Modal específico do CRM */
+#cardModal .modal-dialog {
+    max-width: 500px;
+    width: 90%;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 500;
+    color: var(--text-primary);
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid var(--gray-dark);
+    border-radius: var(--radius-sm);
+    font-size: 14px;
+}
+
+.form-group textarea {
+    resize: vertical;
+}
+
+.form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+/* Estilos para drag and drop */
+.kanban-card.dragging {
+    opacity: 0.5;
+    transform: scale(0.98);
+}
+
+.kanban-board.drop-zone {
+    background-color: rgba(37, 211, 102, 0.05);
+    border: 2px dashed var(--primary-color);
+}
+
+/* Scrollbar personalizada para os kanbans */
+.kanban-cards::-webkit-scrollbar {
+    width: 6px;
+}
+
+.kanban-cards::-webkit-scrollbar-track {
+    background: var(--gray-light);
+}
+
+.kanban-cards::-webkit-scrollbar-thumb {
+    background: var(--gray-dark);
+    border-radius: 3px;
+}
+
+.kanban-cards::-webkit-scrollbar-thumb:hover {
+    background: var(--text-secondary);
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .kanban-board {
+        width: 280px;
+        min-width: 280px;
+    }
+    
+    .crm-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+    
+    .crm-actions {
+        width: 100%;
+        justify-content: flex-end;
+    }
+}
+#toast-container {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 9999;
+}
+
+.toast {
+  background: #4caf50; /* verde sucesso */
+  color: #fff;
+  padding: 12px 20px;
+  margin-top: 10px;
+  border-radius: 6px;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  opacity: 0;
+  transform: translateX(100%);
+  animation: slideIn 0.5s forwards, fadeOut 0.5s 3s forwards;
+}
+
+@keyframes slideIn {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeOut {
+  to {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+}
+.modal {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.5);
+  display: flex; justify-content: center; align-items: center;
+  z-index: 9999;
+}
+
+.modal.hidden {
+  display: none;
+}
+
+.modal-content {
+  background: #fff;
+  padding: 20px 30px;
+  border-radius: 8px;
+  width: 350px;
+  text-align: center;
+  font-family: 'Inter', sans-serif;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+}
+
+.modal-content h3 {
+  margin-bottom: 10px;
+}
+
+.modal-actions {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.btn-confirm {
+  background: #f44336;
+  border: none;
+  padding: 10px 20px;
+  color: #fff;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.btn-cancel {
+  background: #ccc;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+}

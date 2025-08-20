@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upper Chat - CRM Kanban</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="crm.css">
+    <head>
+    <!-- Outras tags meta e links -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+</head>
+<body>
+    <!-- Navbar Superior -->
+    <nav class="top-navbar">
+        <div class="navbar-content">
+            <!-- Logo no canto esquerdo -->
+            <div class="logo-container">
+                <div class="navbar-logo">
+                    <img src="upper chat logotipo transparente verde.png" alt="Upper Chat Logo" class="logo-img">
+                </div>
+            </div>
+            
+            <!-- Menus centralizados -->
+            <nav class="navbar-menu">
+                <a href="chat.html" class="menu-item">Chat</a>
+                <a href="dashboard.html" class="menu-item">Dashboard</a>
+                <a href="crm.html" class="menu-item active">CRM</a>
+            </nav>
+            
+            <!-- Ícones no canto direito -->
+            <div class="navbar-icons">
+                
+
+                
+
+                <div class="user-avatar small">
+                    <img src="Clínica bn - logo com fundo.png" alt="Usuário">
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="crm-container">
+        <div class="crm-header">
+            <h1>CRM - Gerenciamento de Contatos</h1>
+            <div class="crm-actions">
+                <button id="addBoardBtn" class="btn-primary">
+                    <i class="fas fa-plus"></i> Novo Kanban
+                </button>
+                
+            </div>
+        </div>
+
+        <div class="kanban-container" id="kanbanContainer">
+            <!-- Kanbans serão adicionados dinamicamente -->
+        </div>
+    </div>
+
+    <!-- Modal para adicionar/editar cards -->
+    <div id="cardModal" class="modal hidden">
+        <div class="modal-backdrop" data-close></div>
+        <div class="modal-dialog">
+            <button class="modal-close" data-close>&times;</button>
+            <h3 id="modalTitle">Adicionar Contato</h3>
+            <form id="cardForm">
+                <div class="form-group">
+                    <label for="cardName">Nome</label>
+                    <input type="text" id="cardName" required>
+                </div>
+                <div class="form-group">
+                    <label for="cardPhone">Telefone</label>
+                    <input type="tel" id="cardPhone">
+                </div>
+                <div class="form-group">
+                    <label for="cardEmail">Email</label>
+                    <input type="email" id="cardEmail">
+                </div>
+                <div class="form-group">
+                    <label for="cardNotes">Observações</label>
+                    <textarea id="cardNotes" rows="3"></textarea>
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn-secondary" data-close>Cancelar</button>
+                    <button type="submit" class="btn-primary">Salvar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div id="toast-container"></div>
+
+<div id="confirmModal" class="modal hidden">
+  <div class="modal-content">
+    <h3>Confirmar Exclusão</h3>
+    <p>Tem certeza que deseja excluir este kanban e todos os seus cards?</p>
+    <div class="modal-actions">
+      <button id="confirmDelete" class="btn-confirm">Excluir</button>
+      <button id="cancelDelete" class="btn-cancel">Cancelar</button>
+    </div>
+  </div>
+</div>
+
+    <script src="crm.js"></script>
+</body>
+</html>

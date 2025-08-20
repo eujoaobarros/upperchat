@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Upper Chat</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="login.css">
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-card">
+            <div class="login-header">
+                <div class="logo">
+                    <img src="upper chat logotipo transparente verde.png" alt="Upper Chat" class="logo-img">
+                </div>
+                <h2>Bem-vindo de volta</h2>
+                <p>Faça login para acessar sua conta</p>
+            </div>
+            
+            <form class="login-form" id="loginForm">
+                <div class="form-group">
+                    <label for="email">E-mail</label>
+                    <div class="input-with-icon">
+                        <i class="fas fa-envelope"></i>
+                        <input type="email" id="email" placeholder="seu@email.com" required>
+                    </div>
+                    <div id="emailError" class="error-message"></div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="password">Senha</label>
+                    <div class="input-with-icon">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" id="password" placeholder="••••••••" required>
+                        <button type="button" class="show-password" id="showPassword">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                    </div>
+                    <div id="passwordError" class="error-message"></div>
+                </div>
+                
+                <div class="form-options">
+                    <label class="remember-me">
+                        <input type="checkbox" id="rememberMe">
+                        <span>Lembrar de mim</span>
+                    </label>
+                    <a href="#" class="forgot-password">Esqueceu a senha?</a>
+                </div>
+                
+                <button type="submit" class="login-btn">
+                    <i class="fas fa-sign-in-alt"></i>
+                    Entrar
+                </button>
+                
+                <div id="loading" class="loading">
+                    <i class="fas fa-spinner"></i> Processando...
+                </div>
+                
+                <div id="successMessage" class="success-message">
+                    Login realizado com sucesso! Redirecionando...
+                </div>
+                
+                <div class="login-footer">
+                    <p>Não tem uma conta? <a href="#" id="registerLink">Cadastre-se</a></p>
+                </div>
+            </form>
+        </div>
+        
+        <div class="login-illustration">
+            <div class="illustration-content">
+                <img src="upper chat logotipo transparente.png" alt="Upper Chat" class="logo-illustration">
+            </div>
+            <div class="illustration-footer">
+                <p>Desenvolvido por Upper Software Studio Ltda - GRUPO UPPER - todos os seus direitos reservados.</p>
+                <p>CNPJ: 58.547.537/0001-56</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Firebase App (o core do Firebase) -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <!-- Firebase Authentication -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    
+    <script src="login.js"></script>
+</body>
+</html>
