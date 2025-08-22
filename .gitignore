@@ -1,0 +1,5 @@
+# Ignorar dependências
+node_modules/
+
+# Ignorar cache/autenticação do WhatsApp Web JS
+.wwebjs_auth/

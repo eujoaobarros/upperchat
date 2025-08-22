@@ -6,9 +6,15 @@ const qrcodeTerminal = require('qrcode-terminal');
 const app = express();
 app.use(cors());
 app.use(express.json());
+const path = require("path");
 
 const PORT = process.env.PORT || 3000;
+app.use(express.static(path.join(__dirname, "")));
 
+// redireciona / para chat.html
+app.get("/", (req, res) => {
+  res.redirect("chat.html");
+});
 // WhatsApp Client
 const client = new Client({
   authStrategy: new LocalAuth({ clientId: 'upper-chat' }),
@@ -438,9 +444,9 @@ app.listen(PORT, () => {
 });
 
 // No seu código principal, quando o usuário seleciona um chat:
-if (window.ChatManager) {
-    window.ChatManager.setCurrentChat(
-        '5511999999999@c.us', // ID do chat (com @c.us no final)
-        'Nome do Contato'     // Nome exibido
-    );
-}
+// if (window.ChatManager) {
+//     window.ChatManager.setCurrentChat(
+//         '5511999999999@c.us', // ID do chat (com @c.us no final)
+//         'Nome do Contato'     // Nome exibido
+//     );
+// }
