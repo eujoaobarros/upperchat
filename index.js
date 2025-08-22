@@ -440,7 +440,7 @@ app.post('/disconnect', async (req, res) => {
 // ===== Inicialização =====
 client.initialize();
 app.listen(PORT, () => {
-  console.log(`HTTP → http://localhost:${PORT}`);
+  console.log(`HTTP → https://chat.upperpublicidade.com.br:${PORT}`);
 });
 
 // No seu código principal, quando o usuário seleciona um chat:

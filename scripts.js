@@ -1,6 +1,6 @@
 // scripts.js
 document.addEventListener('DOMContentLoaded', () => {
-  const API_BASE = 'http://localhost:3000';
+  const API_BASE = 'https://chat.upperpublicidade.com.br';
 
   // Elementos do HTML
   const waStatusBtn = document.getElementById('waStatusBtn');
