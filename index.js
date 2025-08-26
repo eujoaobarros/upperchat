@@ -8,12 +8,12 @@ app.use(cors());
 app.use(express.json());
 const path = require("path");
 
-const PORT = 80;
+const PORT = 3000;
 app.use(express.static(path.join(__dirname, "")));
 
 // redireciona / para chat.html
 app.get("/", (req, res) => {
-  res.redirect("chat.html");
+  res.redirect("index.html");
 });
 // WhatsApp Client
 const client = new Client({
@@ -449,4 +449,5 @@ app.listen(PORT, () => {
 //         '5511999999999@c.us', // ID do chat (com @c.us no final)
 //         'Nome do Contato'     // Nome exibido
 //     );
+
 // }
